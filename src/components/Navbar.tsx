@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Menu, Route, X, ArrowRight } from "lucide-react";
 import { useScrolled } from "../lib/hooks";
 import { cn } from "../utils/cn";
-import "react/jsx-runtime";
 
 const LINKS = [
   { id: "para-quien", label: "Para quién" },
@@ -38,7 +37,8 @@ export default function Navbar() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 px-3 sm:px-5">
-      <div className={cn(
+      <div
+        className={cn(
           "mx-auto mt-3 flex max-w-6xl items-center justify-between rounded-2xl px-4 py-3 transition-all duration-500 sm:px-5",
           scrolled
             ? "glass shadow-[0_18px_50px_-12px_rgba(0,0,0,0.65)]"
@@ -88,7 +88,6 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* mobile panel */}
       <div
         className={cn(
           "mx-auto mt-2 max-w-6xl overflow-hidden rounded-2xl transition-all duration-500 lg:hidden",

@@ -43,7 +43,6 @@ export default function TrustLimits() {
         </Reveal>
 
         <div className="mt-12 grid gap-6 lg:grid-cols-2">
-          {/* CAN */}
           <Reveal variant="left">
             <div className="glass h-full rounded-3xl border-emerald-400/15 bg-emerald-400/[0.03] p-7 sm:p-9">
               <div className="flex items-center gap-3">
@@ -63,7 +62,6 @@ export default function TrustLimits() {
             </div>
           </Reveal>
 
-          {/* CANNOT */}
           <Reveal variant="right" delay={120}>
             <div className="glass h-full rounded-3xl border-orange-400/15 bg-orange-400/[0.03] p-7 sm:p-9">
               <div className="flex items-center gap-3">
@@ -84,7 +82,6 @@ export default function TrustLimits() {
           </Reveal>
         </div>
 
-        {/* Trazabilidad explicada en lenguaje humano */}
         <Reveal delay={200}>
           <div className="mt-8 rounded-3xl border border-cyan-400/15 bg-gradient-to-br from-cyan-400/[0.06] to-transparent p-7 sm:p-9">
             <h3 className="text-lg font-extrabold text-white">Trazabilidad, en lenguaje humano</h3>

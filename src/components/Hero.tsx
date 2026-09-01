@@ -39,7 +39,6 @@ export default function Hero() {
 
   return (
     <section id="inicio" className="relative flex min-h-[100svh] flex-col overflow-hidden">
-      {/* background layers */}
       <div className="grid-bg mask-fade-y absolute inset-0" />
       <Particles className="absolute inset-0 h-full w-full opacity-70" />
       <div ref={orbA} className="absolute -left-36 -top-36 h-[30rem] w-[30rem] rounded-full bg-cyan-500/[0.16] blur-[130px]" />
@@ -111,7 +110,6 @@ export default function Hero() {
         </Reveal>
       </div>
 
-      {/* scroll indicator */}
       <div className="relative flex justify-center pb-8">
         <div className="flex flex-col items-center gap-2 text-slate-500">
           <div className="flex h-10 w-6 items-start justify-center rounded-full border border-slate-600/80 p-1.5">

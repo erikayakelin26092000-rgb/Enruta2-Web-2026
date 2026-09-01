@@ -59,14 +59,12 @@ export default function Roadmap() {
       lead="No prometemos revolucionar el transporte de un día para otro. Esta es la ruta honesta de crecimiento del proyecto."
     >
       <div className="relative mx-auto max-w-3xl">
-        {/* base line */}
         <div className="absolute bottom-6 left-[19px] top-6 w-px bg-white/10 sm:left-1/2" />
 
         <div className="space-y-10">
           {PHASES.map((p, i) => (
             <Reveal key={p.title} delay={i * 100} variant={i % 2 === 0 ? "left" : "right"}>
               <div className={cn("relative flex gap-6 sm:w-1/2", i % 2 === 0 ? "sm:pr-12" : "sm:ml-auto sm:pl-12")}>
-                {/* dot */}
                 <span
                   className={cn(
                     "absolute left-[12px] top-1.5 z-10 grid h-4 w-4 place-items-center rounded-full shadow-[0_0_18px] sm:left-auto",
@@ -104,13 +102,12 @@ export default function Roadmap() {
 
       <Reveal delay={200}>
         <p className="mx-auto mt-12 max-w-2xl text-center text-sm leading-relaxed text-slate-500 sm:text-base">
-          “Una propuesta tecnológica desarrollada para explorar una forma{" "}
+          "Una propuesta tecnológica desarrollada para explorar una forma{" "}
           <span className="font-semibold text-slate-300">más sencilla, trazable y organizada</span> de gestionar el
-          transporte urbano.”
+          transporte urbano."
         </p>
       </Reveal>
 
-      {/* CTA final sobrio */}
       <Reveal delay={300}>
         <div className="mt-14 rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.04] to-transparent p-8 text-center sm:p-12">
           <h3 className="text-2xl font-extrabold tracking-tight text-white sm:text-3xl">
