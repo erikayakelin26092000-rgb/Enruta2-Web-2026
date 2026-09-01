@@ -1,0 +1,50 @@
+version: 2
+updates:
+  # npm/Node.js dependencies
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "03:00"
+    allow:
+      - dependency-type: "all"
+    reviewers:
+      - "erikayakelin26092000-rgb"
+    assignees:
+      - "erikayakelin26092000-rgb"
+    labels:
+      - "dependencies"
+      - "npm"
+    commit-message:
+      prefix: "chore"
+      prefix-development: "chore"
+      include: "scope"
+    pull-request-branch-name:
+      separator: "/"
+    rebase-strategy: "auto"
+    # Group security updates separately
+    groups:
+      security-updates:
+        dependency-types:
+          - "production"
+        patterns:
+          - "*"
+        update-types:
+          - "patch"
+
+  # GitHub Actions workflows
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "04:00"
+    reviewers:
+      - "erikayakelin26092000-rgb"
+    labels:
+      - "dependencies"
+      - "github-actions"
+    commit-message:
+      prefix: "ci"
+      include: "scope"
