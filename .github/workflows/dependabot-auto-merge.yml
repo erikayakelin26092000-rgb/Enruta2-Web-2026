@@ -1,0 +1,106 @@
+name: Dependabot Auto-Merge
+
+on:
+  pull_request_target:
+    types:
+      - opened
+      - synchronize
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  auto-merge:
+    if: dependabot.is-update && github.actor == 'dependabot[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Get PR Details
+        id: pr-details
+        run: |
+          PR_NUMBER="${{ github.event.pull_request.number }}"
+          echo "PR_NUMBER=$PR_NUMBER" >> $GITHUB_OUTPUT
+          gh pr view $PR_NUMBER --json title,labels --jq '.title' > title.txt
+          TITLE=$(cat title.txt)
+          echo "TITLE=$TITLE" >> $GITHUB_OUTPUT
+          
+          # Check if it's a security update
+          if echo "$TITLE" | grep -iE "(security|fix)"; then
+            echo "IS_SECURITY=true" >> $GITHUB_OUTPUT
+          else
+            echo "IS_SECURITY=false" >> $GITHUB_OUTPUT
+          fi
+          
+          # Detect version bump type
+          if echo "$TITLE" | grep -E "\d+\.\d+\.\d+.*\d+\.\d+\.\d+"; then
+            # Extract and compare version numbers to determine bump type
+            OLD_VERSION=$(echo "$TITLE" | grep -oE "[0-9]+\.[0-9]+\.[0-9]+" | head -1)
+            NEW_VERSION=$(echo "$TITLE" | grep -oE "[0-9]+\.[0-9]+\.[0-9]+" | tail -1)
+            echo "VERSION_BUMP: $OLD_VERSION -> $NEW_VERSION"
+            
+            OLD_MAJOR=$(echo $OLD_VERSION | cut -d. -f1)
+            OLD_MINOR=$(echo $OLD_VERSION | cut -d. -f2)
+            NEW_MAJOR=$(echo $NEW_VERSION | cut -d. -f1)
+            NEW_MINOR=$(echo $NEW_VERSION | cut -d. -f2)
+            
+            if [ "$OLD_MAJOR" != "$NEW_MAJOR" ]; then
+              echo "BUMP_TYPE=major" >> $GITHUB_OUTPUT
+            elif [ "$OLD_MINOR" != "$NEW_MINOR" ]; then
+              echo "BUMP_TYPE=minor" >> $GITHUB_OUTPUT
+            else
+              echo "BUMP_TYPE=patch" >> $GITHUB_OUTPUT
+            fi
+          fi
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+      - name: Approve and Auto-Merge (Dev Dependency - Low Risk)
+        if: |
+          contains(github.event.pull_request.title, 'deps-dev') &&
+          (steps.pr-details.outputs.BUMP_TYPE == 'patch' || 
+           steps.pr-details.outputs.BUMP_TYPE == 'minor' ||
+           steps.pr-details.outputs.IS_SECURITY == 'true')
+        run: |
+          PR_NUMBER="${{ github.event.pull_request.number }}"
+          
+          # Approve the PR
+          gh pr review $PR_NUMBER --approve --body "🤖 Auto-approved: Dev dependency update (low risk)"
+          
+          # Enable auto-merge
+          gh pr merge $PR_NUMBER --squash --auto
+          
+          echo "✅ PR #$PR_NUMBER auto-merged successfully"
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+      - name: Approve and Auto-Merge (Security Updates)
+        if: steps.pr-details.outputs.IS_SECURITY == 'true'
+        run: |
+          PR_NUMBER="${{ github.event.pull_request.number }}"
+          
+          # Approve the PR
+          gh pr review $PR_NUMBER --approve --body "🔒 Auto-approved: Security update (prioritized)"
+          
+          # Enable auto-merge
+          gh pr merge $PR_NUMBER --squash --auto
+          
+          echo "✅ Security PR #$PR_NUMBER auto-merged"
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+      - name: Approve Only (Production Dependency - Major)
+        if: |
+          contains(github.event.pull_request.title, 'deps:') &&
+          steps.pr-details.outputs.BUMP_TYPE == 'major'
+        run: |
+          PR_NUMBER="${{ github.event.pull_request.number }}"
+          
+          # Only approve, don't merge
+          gh pr review $PR_NUMBER --approve --body "✅ Auto-approved: Waiting for manual merge (major version bump of production dependency)"
+          
+          echo "⏳ PR #$PR_NUMBER approved but waiting for manual merge due to major bump"
+        env:
+          GH_TOKEN: ${{ github.token }}
