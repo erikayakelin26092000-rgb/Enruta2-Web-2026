@@ -2,7 +2,7 @@
 
 Landing page oficial del sistema de transporte urbano Enrutados Venezuela.
 
-**URL en producción:** https://pasageurbanovenapp.github.io/Enruta2-Web-2026/
+**URL en producción:** https://erikayakelin26092000-rgb.github.io/Enruta2-Web-2026/
 
 ## Stack
 
