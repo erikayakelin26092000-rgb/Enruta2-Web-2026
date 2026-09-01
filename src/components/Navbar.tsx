@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 import { Menu, Route, X, ArrowRight } from "lucide-react";
 import { useScrolled } from "../lib/hooks";
 import { cn } from "../utils/cn";
+import "react/jsx-runtime";
 
 const LINKS = [
+  { id: "para-quien", label: "Para quién" },
   { id: "que-es", label: "Qué es" },
   { id: "como-funciona", label: "Cómo funciona" },
   { id: "ecosistema", label: "Ecosistema" },
-  { id: "dinero", label: "Dinero" },
+  { id: "confianza", label: "Confianza" },
   { id: "tecnologia", label: "Tecnología" },
   { id: "hoja-de-ruta", label: "Hoja de ruta" },
   { id: "faq", label: "FAQ" },
@@ -36,8 +38,7 @@ export default function Navbar() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 px-3 sm:px-5">
-      <div
-        className={cn(
+      <div className={cn(
           "mx-auto mt-3 flex max-w-6xl items-center justify-between rounded-2xl px-4 py-3 transition-all duration-500 sm:px-5",
           scrolled
             ? "glass shadow-[0_18px_50px_-12px_rgba(0,0,0,0.65)]"
@@ -71,7 +72,7 @@ export default function Navbar() {
 
         <div className="flex items-center gap-2">
           <a
-            href="#contacto"
+            href="#hoja-de-ruta"
             className="group hidden items-center gap-1.5 rounded-xl bg-gradient-to-r from-cyan-400 to-cyan-500 px-4 py-2.5 text-[13px] font-bold text-slate-950 shadow-lg shadow-cyan-500/25 transition-all hover:shadow-cyan-400/40 hover:brightness-110 sm:inline-flex"
           >
             Iniciar un piloto
@@ -91,7 +92,7 @@ export default function Navbar() {
       <div
         className={cn(
           "mx-auto mt-2 max-w-6xl overflow-hidden rounded-2xl transition-all duration-500 lg:hidden",
-          open ? "max-h-[420px] opacity-100" : "max-h-0 opacity-0"
+          open ? "max-h-[520px] opacity-100" : "max-h-0 opacity-0"
         )}
       >
         <div className="glass flex flex-col gap-1 p-3">
@@ -106,7 +107,7 @@ export default function Navbar() {
             </a>
           ))}
           <a
-            href="#contacto"
+            href="#hoja-de-ruta"
             onClick={() => setOpen(false)}
             className="mt-1 rounded-xl bg-gradient-to-r from-cyan-400 to-cyan-500 px-4 py-3 text-center text-sm font-bold text-slate-950"
           >

@@ -36,7 +36,8 @@ export default function Security() {
       label="Seguridad y protección"
       title={
         <>
-          Tokens dinámicos con anti-replay. <span className="text-gradient">Sin promesas absolutas.</span>
+          Tokens dinámicos con anti-replay.{" "}
+          <span className="text-gradient">Sin promesas absolutas.</span>
         </>
       }
       lead="Preferimos explicar exactamente qué protegemos y cómo — incluyendo lo que aún podemos mejorar."

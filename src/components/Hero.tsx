@@ -1,13 +1,13 @@
 import { useEffect, useRef } from "react";
-import { ArrowDown, ArrowRight, Clock, Quote, Smartphone, Split, Timer } from "lucide-react";
+import { ArrowDown, ArrowRight, Eye, Handshake, ShieldCheck, Users } from "lucide-react";
 import Particles from "./Particles";
 import Reveal from "./Reveal";
 
-const STATS = [
-  { icon: Smartphone, value: "3 apps", label: "un solo ecosistema conectado" },
-  { icon: Timer, value: "≤ 3 s", label: "por validación de pasaje" },
-  { icon: Split, value: "85 / 10 / 5", label: "asociación · colector · plataforma" },
-  { icon: Clock, value: "7:00 PM", label: "cierre de caja automático" },
+const PILLARS = [
+  { icon: ShieldCheck, value: "Verificable", label: "cada operación deja registro" },
+  { icon: Handshake, value: "Responsable", label: "consciente de sus límites" },
+  { icon: Users, value: "3 actores", label: "pasajero · conductor · asociación" },
+  { icon: Eye, value: "Trazable", label: "información útil y comprensible" },
 ];
 
 export default function Hero() {
@@ -50,56 +50,53 @@ export default function Hero() {
         <Reveal>
           <div className="inline-flex w-fit items-center gap-2.5 rounded-full border border-cyan-400/25 bg-cyan-400/[0.07] px-4 py-2 text-[11px] font-semibold tracking-wide text-cyan-200">
             <span className="h-1.5 w-1.5 animate-pulse-dot rounded-full bg-cyan-400" />
-            PROYECTO VENEZOLANO — PROTOTIPO FUNCIONAL DE GESTIÓN DE TRANSPORTE DIGITAL
+            PROYECTO VENEZOLANO — PRESTADOR DE SERVICIO EN FORMACIÓN
           </div>
         </Reveal>
 
         <Reveal delay={110}>
-          <h1 className="mt-7 max-w-4xl text-[2.6rem] font-extrabold leading-[1.02] tracking-tight text-white sm:text-6xl lg:text-[5.2rem]">
-            El transporte urbano,
+          <h1 className="mt-7 max-w-4xl text-[2.4rem] font-extrabold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-[4.6rem]">
+            Herramientas digitales para un
             <br />
-            <span className="text-gradient">conectado.</span>
+            <span className="text-gradient">transporte urbano más verificable.</span>
           </h1>
         </Reveal>
 
         <Reveal delay={220}>
           <p className="mt-7 max-w-2xl text-base leading-relaxed text-slate-400 sm:text-xl">
-            Una plataforma digital que conecta pasajeros, conductores y asociaciones para
-            transformar el pago y la gestión del transporte público.
+            Conectamos pasajeros, conductores y organizaciones de transporte mediante un sistema 
+            diseñado para hacer el cobro y la operación más simples, trazables y transparentes.
           </p>
         </Reveal>
 
-        <Reveal delay={320}>
+        <Reveal delay={300}>
+          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-slate-500 sm:text-base">
+            Construido para la realidad venezolana. Consciente de sus límites. En evolución constante.
+          </p>
+        </Reveal>
+
+        <Reveal delay={380}>
           <div className="mt-9 flex flex-wrap items-center gap-4">
             <a
-              href="#como-funciona"
+              href="#para-quien"
               className="group inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-cyan-400 to-teal-400 px-7 py-4 text-sm font-bold text-slate-950 shadow-xl shadow-cyan-500/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-cyan-400/40"
             >
-              Conoce cómo funciona
+              Descubre para quién es
               <ArrowDown className="h-4 w-4 transition-transform group-hover:translate-y-0.5" />
             </a>
             <a
-              href="#ecosistema"
+              href="#confianza"
               className="group inline-flex items-center gap-2 rounded-2xl border border-white/12 bg-white/[0.04] px-7 py-4 text-sm font-semibold text-white backdrop-blur transition-all duration-300 hover:border-white/25 hover:bg-white/[0.08]"
             >
-              Explora el ecosistema
+              Qué podemos garantizar
               <ArrowRight className="h-4 w-4 text-cyan-300 transition-transform group-hover:translate-x-1" />
             </a>
           </div>
         </Reveal>
 
-        <Reveal delay={420}>
-          <div className="mt-10 flex items-start gap-3 text-slate-400">
-            <Quote className="mt-0.5 h-4 w-4 shrink-0 text-cyan-400/70" />
-            <p className="max-w-xl text-sm italic leading-relaxed sm:text-base">
-              Un proyecto venezolano desarrollado para responder a una realidad venezolana.
-            </p>
-          </div>
-        </Reveal>
-
         <Reveal delay={520}>
           <div className="glass mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-2xl lg:grid-cols-4">
-            {STATS.map((s) => (
+            {PILLARS.map((s) => (
               <div key={s.label} className="flex items-center gap-4 bg-white/[0.015] px-5 py-5 sm:px-6">
                 <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-cyan-400/20 bg-cyan-400/10">
                   <s.icon className="h-4.5 w-4.5 text-cyan-300" />

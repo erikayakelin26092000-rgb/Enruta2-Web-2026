@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-type P = {
+interface P {
   x: number;
   y: number;
   vx: number;

@@ -1,4 +1,4 @@
-import { Check, CircleDashed, FlaskConical, Telescope } from "lucide-react";
+import { Check, CircleDashed, FlaskConical, Telescope, Mail, ArrowRight, UserPlus } from "lucide-react";
 import Section from "./Section";
 import Reveal from "./Reveal";
 import { cn } from "../utils/cn";
@@ -9,7 +9,6 @@ const PHASES = [
     status: "HOY",
     title: "Prototipo funcional",
     statusClass: "bg-cyan-400 text-slate-950",
-    line: "bg-cyan-400",
     dot: "bg-cyan-400 shadow-cyan-400/40",
     done: true,
     items: [
@@ -24,7 +23,6 @@ const PHASES = [
     status: "SIGUIENTE",
     title: "Prueba piloto real",
     statusClass: "bg-orange-400 text-slate-950",
-    line: "bg-gradient-to-b from-cyan-400 to-orange-400",
     dot: "bg-orange-400 shadow-orange-400/40",
     done: false,
     items: [
@@ -38,7 +36,6 @@ const PHASES = [
     status: "FUTURO",
     title: "Escala",
     statusClass: "bg-violet-400 text-slate-950",
-    line: "bg-violet-400/60",
     dot: "bg-violet-400 shadow-violet-400/40",
     done: false,
     items: [
@@ -111,6 +108,42 @@ export default function Roadmap() {
           <span className="font-semibold text-slate-300">más sencilla, trazable y organizada</span> de gestionar el
           transporte urbano.”
         </p>
+      </Reveal>
+
+      {/* CTA final sobrio */}
+      <Reveal delay={300}>
+        <div className="mt-14 rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.04] to-transparent p-8 text-center sm:p-12">
+          <h3 className="text-2xl font-extrabold tracking-tight text-white sm:text-3xl">
+            Construyamos un transporte más verificable.
+          </h3>
+          <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-slate-400 sm:text-base">
+            Enrutados comienza con problemas concretos, herramientas sencillas y una premisa fundamental: 
+            la tecnología debe estar al servicio de las personas que utilizan y operan el transporte todos los días.
+          </p>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+            <a
+              href="mailto:contacto@enrutados.ve"
+              className="group inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-cyan-400 to-teal-400 px-7 py-3.5 text-sm font-bold text-slate-950 shadow-lg shadow-cyan-500/20 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-cyan-400/30"
+            >
+              <Mail className="h-4 w-4" />
+              Contactar
+            </a>
+            <a
+              href="#inicio"
+              className="group inline-flex items-center gap-2 rounded-2xl border border-white/12 bg-white/[0.04] px-7 py-3.5 text-sm font-semibold text-white backdrop-blur transition-all duration-300 hover:border-white/25 hover:bg-white/[0.08]"
+            >
+              <ArrowRight className="h-4 w-4 text-cyan-300" />
+              Conocer el proyecto
+            </a>
+            <a
+              href="mailto:contacto@enrutados.ve?subject=Interés%20en%20prueba%20piloto"
+              className="group inline-flex items-center gap-2 rounded-2xl border border-emerald-400/20 bg-emerald-400/[0.06] px-7 py-3.5 text-sm font-semibold text-emerald-200 backdrop-blur transition-all duration-300 hover:border-emerald-400/40 hover:bg-emerald-400/[0.1]"
+            >
+              <UserPlus className="h-4 w-4" />
+              Participar en una prueba piloto
+            </a>
+          </div>
+        </div>
       </Reveal>
     </Section>
   );
